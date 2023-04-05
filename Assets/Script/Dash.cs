@@ -46,6 +46,23 @@ public class Dash : MonoBehaviour
             Vector2 direction = new Vector2(horizontal, vertical).normalized;
 
             // Si le joueur appuie sur la touche de dash et que la direction est valide
+            if (Input.GetKeyDown(KeyCode.JoystickButton2) && direction != Vector2.zero)
+            {
+                // Normaliser la direction pour éviter les déplacements excessifs en diagonale
+                if (direction.magnitude > 1f)
+                {
+                    direction.Normalize();
+                }
+
+                // Stocker la direction pour le dash
+                dashDirection = direction;
+
+                // Mettre en place le temps de recharge du dash
+                dashCooldownTimer = dashCooldown;
+                tr.emitting = true;
+            }
+
+
             if (Input.GetKeyDown(KeyCode.LeftAlt) && direction != Vector2.zero)
             {
                 // Normaliser la direction pour éviter les déplacements excessifs en diagonale
@@ -61,12 +78,22 @@ public class Dash : MonoBehaviour
                 dashCooldownTimer = dashCooldown;
                 tr.emitting = true;
             }
-            
+
+
+
         }
+        if (Input.GetKeyUp(KeyCode.JoystickButton2))
+        {
+            tr.emitting = false;
+        }
+
+
         if (Input.GetKeyUp(KeyCode.LeftAlt))
         {
             tr.emitting = false;
         }
+
+
     }
     void FixedUpdate()
     {

@@ -24,6 +24,16 @@ public class Combat_Melee : MonoBehaviour
                 CooldownAttack= Time.time + 1f/Attaque_Rate; //0.5s
             }
         }
+
+        if (Time.time >= CooldownAttack)
+        {
+            if (Input.GetKeyDown(KeyCode.Joystick1Button5))
+            {
+                Melee();
+                CooldownAttack = Time.time + 1f / Attaque_Rate; //0.5s
+            }
+        }
+
     }
 
     private void Melee()
