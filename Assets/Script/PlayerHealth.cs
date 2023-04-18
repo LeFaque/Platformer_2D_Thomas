@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         //healthBarRef.SetHealth(currentHealth);
@@ -47,12 +47,12 @@ public class PlayerHealth : MonoBehaviour
     public void Death()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        animController.SetBool("isDead", true);
+        //animController.SetBool("isDead", true);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             gameObject.transform.position = PosRespawn;
             currentHealth = 100;
-            animController.SetBool("isDead", false);
+            //animController.SetBool("isDead", false);
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
