@@ -7,8 +7,8 @@ public class Combat_Melee : MonoBehaviour
     public Transform Attaque_Position;
     public LayerMask EnemyLayers;
 
-    [SerializeField] private float Attaque_Range=0.5f;
-    [SerializeField] private int Attaque_Dommage = 30;
+    [SerializeField] private float Attaque_Range=0.6f;
+    [SerializeField] private int Attaque_Dommage = 100;
 
     [SerializeField] private float Attaque_Rate = 2f; 
     private float CooldownAttack=0;

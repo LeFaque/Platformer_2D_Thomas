@@ -54,4 +54,19 @@ public class Player_Commande : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("camera_boss"))
+        {
+            Debug.Log("camera boss");
+            collision.GetComponent<camera_boss>().ActiveBossCamera();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("camera_boss"))
+        {
+            collision.GetComponent<camera_boss>().DeactiveBossCamera();
+        }
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Health_little : MonoBehaviour
 {
-    private int MaxHealth=100;
+    private int MaxHealth= 100;
     bool IsDead = false;
 
     [SerializeField] private int CurrentHealth;

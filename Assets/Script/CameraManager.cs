@@ -9,10 +9,6 @@ public class CameraManager : MonoBehaviour
     float smoothTime = 0.2f;
     
     // Start is called before the first frame update
-    void Start()
-    {       
-    }
-
     // Update is called once per frame
     void Update()
     {
