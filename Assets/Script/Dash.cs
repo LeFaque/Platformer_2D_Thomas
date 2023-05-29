@@ -21,11 +21,17 @@ public class Dash : MonoBehaviour
     // Temps restant avant de pouvoir utiliser le dash à nouveau
     private float dashCooldownTimer = 0f;
 
+    private float lastImageXpos;
+
+    [SerializeField]private float distanceBetweenImages;
+    PlayerAfterImagePool afterImagePool;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        afterImagePool = PlayerAfterImagePool.Instance;
     }
 
     // Update is called once per frame
@@ -35,6 +41,13 @@ public class Dash : MonoBehaviour
         if (dashCooldownTimer > 0)
         {
             dashCooldownTimer -= Time.deltaTime;
+
+            if(Mathf.Abs(transform.position.x - lastImageXpos)> distanceBetweenImages)
+            {
+                PlayerAfterImagePool.Instance.GetFromPool();
+               // afterImage.transform.position = transform.position;   LLLLLLLLLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                lastImageXpos = transform.position.x;
+            }
         }
 
         // Sinon, permettre au joueur d'utiliser le dash
@@ -60,6 +73,10 @@ public class Dash : MonoBehaviour
                 // Mettre en place le temps de recharge du dash
                 dashCooldownTimer = dashCooldown;
                 tr.emitting = true;
+
+                PlayerAfterImagePool.Instance.GetFromPool();
+                //afterImage.transform.position = transform.position;
+                lastImageXpos = transform.position.x;
             }
 
 
@@ -77,6 +94,9 @@ public class Dash : MonoBehaviour
                 // Mettre en place le temps de recharge du dash
                 dashCooldownTimer = dashCooldown;
                 tr.emitting = true;
+
+                PlayerAfterImagePool.Instance.GetFromPool();
+                lastImageXpos = transform.position.x;
             }
 
 

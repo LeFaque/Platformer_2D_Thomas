@@ -13,6 +13,12 @@ public class Combat_Melee : MonoBehaviour
     [SerializeField] private float Attaque_Rate = 2f; 
     private float CooldownAttack=0;
 
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -38,6 +44,7 @@ public class Combat_Melee : MonoBehaviour
 
     private void Melee()
     {
+        anim.SetBool("Atk", true);
         Collider2D[] HitEnnemi =Physics2D.OverlapCircleAll(Attaque_Position.position,Attaque_Range,EnemyLayers);
 
 
@@ -53,8 +60,15 @@ public class Combat_Melee : MonoBehaviour
                 Ennemi.GetComponent<Health_big>().TakeDamage(Attaque_Dommage);
                 Debug.Log("Hit " + Ennemi.name);
             }
+        StartCoroutine(FinAtk());
 
         
+    }
+    private IEnumerator FinAtk()
+    {
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("Atk", false);
+
     }
 
 

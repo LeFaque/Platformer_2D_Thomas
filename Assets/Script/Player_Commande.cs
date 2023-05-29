@@ -11,12 +11,15 @@ public class Player_Commande : MonoBehaviour
     private SpriteRenderer sr;
     private Rigidbody2D rb;
     private bool isGrounded = false;
+    private Animator anim;
+    private float moveInput;
 
     void Start()
     {
+        anim = GetComponentInChildren<Animator>(); 
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 3;
-        sr = GetComponent<SpriteRenderer>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
@@ -25,8 +28,10 @@ public class Player_Commande : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
 
         // déplacement horizontal
-        float moveInput = Input.GetAxisRaw("Horizontal");
+        moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+
+        
 
         // Turn
         if (moveInput != 0)
@@ -42,17 +47,29 @@ public class Player_Commande : MonoBehaviour
                 //sr.flipX = true;
             }
         }
+        if (rb.velocity.y < 1 && rb.velocity.y > -1)
+        {
+            anim.SetBool("Jump", false);
+        }
         
 
         // saut
         if (Input.GetKeyDown(KeyCode.JoystickButton0) && isGrounded)
         {
+            anim.SetBool("Jump", true);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            anim.SetBool("Jump", true);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
+    }
+    private void FixedUpdate()
+    {
+        anim.SetFloat("Run", Mathf.Abs(moveInput));
+        anim.SetBool("Grounded", isGrounded);
+        anim.SetFloat("Fall", rb.velocity.y);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
