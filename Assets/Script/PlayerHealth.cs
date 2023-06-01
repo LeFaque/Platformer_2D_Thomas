@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     Animator animController;
 
     private int maxHealth = 100;
-    public int currentHealth = 0;
+    public int currentHealth = 100;
     Vector2 ref_velocity = Vector2.zero;
     public Vector3 PosRespawn = Vector3.zero;
 

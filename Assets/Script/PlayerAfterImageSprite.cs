@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class PlayerAfterImageSprite : MonoBehaviour
 {
     [SerializeField]
-    private float activeTime = 0.1f;
+    private float activeTime = 0.5f;
     private float timeActivated;
     private float alpha;
 

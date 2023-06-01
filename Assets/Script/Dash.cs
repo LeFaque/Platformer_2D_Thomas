@@ -45,7 +45,7 @@ public class Dash : MonoBehaviour
             if(Mathf.Abs(transform.position.x - lastImageXpos)> distanceBetweenImages)
             {
                 PlayerAfterImagePool.Instance.GetFromPool();
-               // afterImage.transform.position = transform.position;   LLLLLLLLLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+               // AfterImage.transform.position = transform.position;  // LLLLLLLLLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                 lastImageXpos = transform.position.x;
             }
         }

@@ -22,18 +22,10 @@ public class Combat_Melee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= CooldownAttack)
-        {
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                Melee();
-                CooldownAttack= Time.time + 1f/Attaque_Rate; //0.5s
-            }
-        }
 
         if (Time.time >= CooldownAttack)
         {
-            if (Input.GetKeyDown(KeyCode.Joystick1Button5))
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.JoystickButton5))
             {
                 Melee();
                 CooldownAttack = Time.time + 1f / Attaque_Rate; //0.5s

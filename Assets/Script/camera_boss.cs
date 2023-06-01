@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEditor.U2D.Animation;
 
 public class camera_boss : MonoBehaviour
 {
