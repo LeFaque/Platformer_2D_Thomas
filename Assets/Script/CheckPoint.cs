@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    [SerializeField]private PlayerHealth heal;
+    [SerializeField]private Player_Health heal;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -14,6 +14,8 @@ public class CheckPoint : MonoBehaviour
             Debug.Log(heal.PosRespawn);
             heal.PosRespawn = gameObject.transform.position;
             Destroy(gameObject);
+
+            Debug.Log("test");
         }
     }
 }
